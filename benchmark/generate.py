@@ -37,12 +37,12 @@ if __name__ == "__main__":
         for i in range(start_exponent, end_exponent + 1):
             if(t == "hamilton"):
                 saturation = 30
-                filename = os.path.join(directory, f"{t}{saturation}_generate{i}.txt")
+                filename = os.path.join(directory, f"generate{i}_{t}{saturation}.txt")
                 generate_file(filename, i, 30,t)
                 saturation = 70
-                filename = os.path.join(directory, f"{t}{saturation}_generate{i}.txt")
+                filename = os.path.join(directory, f"generate{i}_{t}{saturation}.txt")
                 generate_file(filename, i, 70, t)
             elif(t == "nonhamilton"):
                 saturation = 50
-                filename = os.path.join(directory, f"{t}_generate{i}.txt")
+                filename = os.path.join(directory, f"generate{i}_{t}{saturation}.txt")
                 generate_file(filename, i, 50, t)
