@@ -1,2 +1,3 @@
+#include "structList.h"
 
-void actions();
+void actions(graph *L, std::string type, int nodes);

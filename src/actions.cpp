@@ -6,7 +6,7 @@
 #include "../include/euler.h";
 #include "../include/hamilton.h";
 
-void actions() { //jakas reprezentacje trzeba wybrac
+void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trzeba wybrac
     std::cout << "Actions\n";
     std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; //dopisac helpa
     std::string action;
@@ -16,13 +16,13 @@ void actions() { //jakas reprezentacje trzeba wybrac
             std::cout << "action> " << action << "\n";
         }
         else if (action == "Print") {
-            printGraph();
+            printGraph(L, nodes);
         }
-        else if (action == "FindEuler") {
-            findEuler();
+        else if (action == "FindEuler" and type == "--hamilton") {
+            findEuler(L, nodes);
         }
         else if (action == "FindHamilton") {
-            findHamilton();
+            findHamilton(L, nodes);
         }
         else if (action == "Exit") {
             std::cout << "Exiting the program...\n";

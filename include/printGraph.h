@@ -1,2 +1,3 @@
+#include "structList.h"
 
-void printGraph();
+void printGraph(graph *L, int nodes);

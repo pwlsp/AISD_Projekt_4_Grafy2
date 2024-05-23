@@ -4,6 +4,7 @@
 
 #include "../include/generate.h"
 #include "../include/actions.h"
+#include "../include/structList.h"
 
 void ifCorrectArgs(int argc, std::string type) {
     if (argc <= 1) {
@@ -55,6 +56,9 @@ int main(int argc, char *argv[]) {
         generateNonHamilton(nodes, 50);
     }
 
-    actions();
+    graph *L;
+    L = new graph[nodes];
+
+    actions(L, type, nodes);
     return 0;
 }

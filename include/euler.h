@@ -1,2 +1,3 @@
+#include "structList.h"
 
-void findEuler();
+void findEuler(graph *L, int nodes);

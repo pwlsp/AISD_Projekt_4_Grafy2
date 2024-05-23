@@ -2,6 +2,8 @@
 #include <sstream>
 #include <limits>
 
+#include "../include/structList.h"
+
 void generateHamilton(int nodes, int saturation) {
 
 }

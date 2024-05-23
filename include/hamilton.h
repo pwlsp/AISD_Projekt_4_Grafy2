@@ -1,2 +1,3 @@
+#include "structList.h"
 
-void findHamilton();
+void findHamilton(graph *L, int nodes);

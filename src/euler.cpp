@@ -2,6 +2,8 @@
 #include <sstream>
 #include <limits>
 
-void findEuler() {
+#include "../include/structList.h"
+
+void findEuler(graph *L, int nodes) {
     
 }
