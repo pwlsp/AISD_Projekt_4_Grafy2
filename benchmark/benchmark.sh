@@ -1,33 +1,30 @@
 #!bin/bash
 
-types=("--hamilton" "--nonhamilton")
+types=("--hamilton" "--nonHamilton")
 actions=("FindEuler" "FindHamilton")
 
 benchmark() {
+    tmpFile=$(mktemp)
     runcpp="../src/a.out $type"
-    name_result="$type.csv"
-    echo "Benchmarking Algorithm $action with input $input_file" 
-    
-    echo "$type, $size, $time" >> $name_result
-    if [[ ($type == "--nonhamilton" && $action == "FindHamilton") || $type == "--hamilton" ]] 
+    if [[ ($type == "--nonHamilton" && $action == "FindHamilton") || $type == "--hamilton" ]] 
     then
-        result=$(/usr/bin/time -f "%S" $runcpp < <(cat $input_file <(echo $action) <(echo Exit)) 2>&1 >$tmpFile)
+        echo "Benchmarking Algorithm $action with input $input_file" 
+        result=$(/usr/bin/time -f "%S" $runcpp < <(cat $input_file <(echo $action) <(echo Exit)) 2>&1 >/dev/null)
+        time=${result%|*}
+        result_file_name=$(echo $action)Time.csv
+        echo "$instance_size,$time" >> $result_file_name
     fi
-    time=${result%|*}
-
-    echo "$instance_size,$time" >> $action_benchmark_time.csv
 }
 
-
-
-echo "InputSize, Time" > $action_benchmark_time.csv
-
 for input_file in "data/generate"*; do
+    instance_size=$(echo $input_file | cut -c $((${#input_file}-1))-$((${#input_file})))
+    echo $instance_size
     for type in "${types[@]}"; do
-
-        for action in "${actions[@]}"; do
-
-            benchmark $input_file $type $action
-        done
+        if [[ $input_file =~ "$(echo $type | cut -c 3-)" ]]
+            then
+            for action in "${actions[@]}"; do
+                benchmark $input_file $type $action $instance_size
+            done
+        fi
     done
 done

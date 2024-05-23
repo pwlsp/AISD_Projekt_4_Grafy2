@@ -2,7 +2,7 @@ import os
 import shutil
 import sys
 
-graph_types = ["hamilton", "nonhamilton"]
+graph_types = ["hamilton", "nonHamilton"]
 
 def generate_file(filename, n, saturation, type):
     with open(filename, 'w') as file:
@@ -37,12 +37,12 @@ if __name__ == "__main__":
         for i in range(start_exponent, end_exponent + 1):
             if(t == "hamilton"):
                 saturation = 30
-                filename = os.path.join(directory, f"generate{i}_{t}{saturation}.txt")
+                filename = os.path.join(directory, f"generate_{saturation}{t}{i}")
                 generate_file(filename, i, 30,t)
                 saturation = 70
-                filename = os.path.join(directory, f"generate{i}_{t}{saturation}.txt")
+                filename = os.path.join(directory, f"generate_{saturation}{t}{i}")
                 generate_file(filename, i, 70, t)
-            elif(t == "nonhamilton"):
+            elif(t == "nonHamilton"):
                 saturation = 50
-                filename = os.path.join(directory, f"generate{i}_{t}{saturation}.txt")
+                filename = os.path.join(directory, f"generate_{t}{i}")
                 generate_file(filename, i, 50, t)
