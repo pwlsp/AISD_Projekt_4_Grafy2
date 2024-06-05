@@ -37,11 +37,11 @@ void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertice
     L[cycle[nodes - 1]].next.push_back(cycle[0]);
     L[cycle[0]].next.push_back(cycle[nodes - 1]);
 
-    // std::cout << "\nbase cycle:\n";
-    // for(int i = 0; i < nodes; i++){
-    //     std::cout << cycle[i] << " ";
-    // }
-    // std::cout << "\n";    
+    std::cout << "\nbase cycle: ";
+    for(int i = 0; i < nodes; i++){
+        std::cout << cycle[i] << " ";
+    }
+    std::cout << "\n";    
 
     while (cur_vertices <= max_vertices - 3)
     {
