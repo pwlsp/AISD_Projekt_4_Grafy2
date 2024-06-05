@@ -8,10 +8,11 @@
 
 void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trzeba wybrac
     // std::cout << "nodes: " << nodes << " " << "type: " << type << "\n";
-    std::cout << "\nActions\n";
+    std::cout << "\n\nActions\n";
     std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; //dopisac helpa
     std::string action;
     while (std::cin) {
+        std::cout << "\n";
         std::cin >> action;
         if (action != "") {
             std::cout << "\naction> " << action << "\n";
