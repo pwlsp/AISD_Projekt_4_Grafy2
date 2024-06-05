@@ -19,7 +19,7 @@ int randomNumber(int x, int y)
     return distribution(gen);
 }
 
-void doGenerateHamilton(graph *L, int nodes, int saturation, int &cur_vertices, int &max_vertices){
+void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertices){
     std::vector<int> cycle(nodes);
     for (int i = 0; i < nodes; ++i)
     {
@@ -116,7 +116,7 @@ void generateHamilton(graph *L, int nodes, int saturation)
     int cur_vertices = nodes;
     int max_vertices = (((nodes * nodes) - nodes) / 2) * saturation / 100;
 
-    doGenerateHamilton(L, nodes, saturation, cur_vertices, max_vertices);
+    doGenerateHamilton(L, nodes, cur_vertices, max_vertices);
 
     std::cout << "The hamiltonian graph has been generated.\n";
     std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
@@ -126,13 +126,13 @@ void generateHamilton(graph *L, int nodes, int saturation)
 
 void generateNonHamilton(graph *L, int nodes)
 {
-    int saturation = 70;
+    int saturation = 100;
     std::cout << "\nautomatic> Non-hamiltionian graph generation\n";
 
     int cur_vertices = nodes;
-    int max_vertices = (((nodes * nodes) - nodes) / 2) * saturation / 100;
+    int max_vertices = (((nodes * nodes) - nodes) / 2) * 100 / 100;
 
-    doGenerateHamilton(L, nodes, saturation, cur_vertices, max_vertices);
+    doGenerateHamilton(L, nodes, cur_vertices, max_vertices);
 
     int removed = randomNumber(0, nodes-1);
 
