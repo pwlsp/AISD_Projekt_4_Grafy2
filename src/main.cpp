@@ -29,6 +29,7 @@ void ifCorrectInput(std::string line) {
             }
         }
 }
+
 int main(int argc, char *argv[]) {
 
     std::string type;
@@ -38,6 +39,7 @@ int main(int argc, char *argv[]) {
     int to;
     //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
+    graph *L;
     int nodes, saturation;
     getline(std::cin, line);
     ifCorrectInput(line);
@@ -48,21 +50,22 @@ int main(int argc, char *argv[]) {
             std::cout << "Error: Saturation must be 30 or 70.\nExiting the program...\n";
             exit(0);
         }
-        if (nodes < 3) {
+        if (nodes < 11) {
             std::cout << "Error: Number of nodes must be greater than 10.\nExiting the program...\n";
             exit(0);
         }
         std::cout << "nodes>" << nodes << "\n" << "saturation>" << saturation << "\n";
-        generateHamilton(nodes, saturation);
+        L = new graph[nodes];
+        generateHamilton(L, nodes, saturation);
     }
     else {
         inputStream >> nodes;
         std::cout << "nodes>" << nodes << "\n";
-        generateNonHamilton(nodes, 50);
+        L = new graph[nodes];
+        generateNonHamilton(L, nodes);
     }
-    graph *L;
-    L = new graph[nodes];
 
     actions(L, type, nodes);
+    delete[] L;
     return 0;
 }

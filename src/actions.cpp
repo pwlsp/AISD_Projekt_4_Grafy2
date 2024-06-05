@@ -7,14 +7,14 @@
 #include "../include/hamilton.h"
 
 void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trzeba wybrac
-    std::cout << "nodes: " << nodes << " " << "type: " << type << "\n";
-    std::cout << "Actions\n";
+    // std::cout << "nodes: " << nodes << " " << "type: " << type << "\n";
+    std::cout << "\nActions\n";
     std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; //dopisac helpa
     std::string action;
     while (std::cin) {
         std::cin >> action;
         if (action != "") {
-            std::cout << "action> " << action << "\n";
+            std::cout << "\naction> " << action << "\n";
         }
         if (action == "Help") {
             std::cout << message;

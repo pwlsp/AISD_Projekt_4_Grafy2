@@ -4,7 +4,7 @@
 
 #include "../include/structList.h"
 
-void printGraph(graph *L, int nodes) {//skopiowac z poprzedniego projektu ez
+void printGraph(graph *L, int nodes) {
     for (int i = 0; i < nodes; i++) {
         std::cout << i << ": ";
         for (std::list<int>::iterator it = L[i].next.begin(); it != L[i].next.end(); it++) {
