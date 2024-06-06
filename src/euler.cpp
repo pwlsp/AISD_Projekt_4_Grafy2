@@ -29,6 +29,9 @@ void eulerGo(graph *L_copy, int V, int *visited, std::stack <int> &resultStack) 
     for(i = L_copy[V].next.begin(); i != L_copy[V].next.end(); i++){
         if(!vis[V][*i]){
             vis[V][*i] = 1;
+            std::cout << "go to:" << *i << "\n";
+            for(std::list<int>::iterator j = L_copy[*i].next.begin(); j != L_copy[*i].next.end(); j++) std::cout << *j << " ";
+            std::cout << "\n";
             eulerGo(L_copy, *i, visited, resultStack);
         }
     }
