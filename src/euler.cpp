@@ -22,7 +22,6 @@ bool ifEuler(graph *L, int nodes) {
 void eulerGo(graph *L_copy, int V, int *visited, std::stack <int> &resultStack) {
     int U;
     visited[V] = 1;
-    std::cout << V << "\n";
     while (!L_copy[V].next.empty()){
             U = L_copy[V].next.front();
             L_copy[V].next.pop_front();
