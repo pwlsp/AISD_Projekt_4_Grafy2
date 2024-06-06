@@ -14,35 +14,34 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
 {
     visited[vertex] = 1;
     count_visited++;
-    std::list successors_copy(L[vertex].next);
-    std::list successors_copy2(L[vertex].next);
-    std::cout << "\nvertex: " << vertex << "\nsuccessors: ";
-    while(successors_copy2.size() > 0){
-        int next = successors_copy2.front();
-        successors_copy2.pop_front();
-        std::cout << next << " ";
-    }
-    std::cout<<"\nvisited: "<< count_visited <<"\n\n";
-    while(successors_copy.size() > 0){
+    path.push_back(vertex);
+    
+    std::list<int> successors_copy(L[vertex].next);
+
+    while(!successors_copy.empty()){
         int next = successors_copy.front();
         successors_copy.pop_front();
         if (next == start && count_visited == nodes)
-            return 1;
+        {
+            path.push_back(start); // complete the cycle
+            return true;
+        }
         if (!visited[next]){
             if (Hamiltonian(L, nodes, visited, path, next, count_visited, start)){
-                path.push_back(vertex);
-                return 1;
+                return true;
             }
         }
     }
     visited[vertex] = 0;
     count_visited--;
-    return 0;
+    path.pop_back();  // Remove the vertex if backtracking
+    return false;
 }
+
 void findHamilton(graph *L, int nodes)
 {
     int start = 5, count_visited = 0;
-    std::vector<int> visited(nodes, 0), path{start};
+    std::vector<int> visited(nodes, 0), path;
 
     bool result = Hamiltonian(L, nodes, visited, path, start, count_visited, start);
 
@@ -53,12 +52,7 @@ void findHamilton(graph *L, int nodes)
         }
         std::cout << "\n";
     }
-
     else{
-        std::cout << "\nHamiltonian cycle not found.\nLast path that has been searched:\n";
-        for (int i = 0; i < path.size(); i++){
-            std::cout << path[i] << " ";
-        }
-        std::cout << "\n";
+        std::cout << "\nHamiltonian cycle not found.\n";
     }
 }
