@@ -46,11 +46,11 @@ void findHamilton(graph *L, int nodes)
     bool result = Hamiltonian(L, nodes, visited, path, start, count_visited, start);
 
     if (result){
-        std::cout << "\nThe graph contains a hamiltonian cycle:\n";
         for (int i = 0; i < path.size(); i++){
             std::cout << path[i] << " ";
         }
         std::cout << "\n";
+        std::cout << "\nThe hamiltonian cycle found successfully.\n";
     }
     else{
         std::cout << "\nHamiltonian cycle not found.\n";

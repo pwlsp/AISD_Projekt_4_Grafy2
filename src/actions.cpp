@@ -8,7 +8,7 @@
 
 void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trzeba wybrac
     // std::cout << "nodes: " << nodes << " " << "type: " << type << "\n";
-    std::cout << "\n\nActions\n";
+    std::cout << "\nActions\nEnter the action:";
     std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; //dopisac helpa
     std::string action;
     while (std::cin) {
@@ -24,7 +24,6 @@ void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trze
             printGraph(L, nodes);
         }
         else if (action == "FindEuler") {//&& type == "--hamilton") {
-            std::cout << "hello\n";
             findEuler(L, nodes);
         }
         else if (action == "FindHamilton") {
@@ -42,5 +41,6 @@ void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trze
             std::cout << "\nWrong command\n";
         /*w*/
         action = "";
+        std::cout << "\nEnter the action:";
     }
 }

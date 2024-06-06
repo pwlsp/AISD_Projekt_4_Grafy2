@@ -37,10 +37,10 @@ void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertice
     L[cycle[nodes - 1]].next.push_back(cycle[0]);
     L[cycle[0]].next.push_back(cycle[nodes - 1]);
 
-    std::cout << "\nbase cycle: ";
-    for(int i = 0; i < nodes; i++){
-        std::cout << cycle[i] << " ";
-    }
+    //std::cout << "\nbase cycle: ";
+    // for(int i = 0; i < nodes; i++){
+    //     std::cout << cycle[i] << " ";
+    // }
     std::cout << "\n";    
 
     while (cur_vertices <= max_vertices - 3)
@@ -111,7 +111,7 @@ void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertice
 
 void generateHamilton(graph *L, int nodes, int saturation)
 {
-    std::cout << "\nautomatic> Hamiltionian graph generation\n";
+    std::cout << "\nautomatic> Hamiltonian graph generation\n";
 
     int cur_vertices = nodes;
     int max_vertices = (((nodes * nodes) - nodes) / 2) * saturation / 100;
@@ -119,9 +119,9 @@ void generateHamilton(graph *L, int nodes, int saturation)
     doGenerateHamilton(L, nodes, cur_vertices, max_vertices);
 
     std::cout << "The hamiltonian graph has been generated.\n";
-    std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
-    std::cout << "max_vertices = " << max_vertices << "\n";
-    std::cout << "end_vertices = " << cur_vertices << "\n";
+    // std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
+    // std::cout << "max_vertices = " << max_vertices << "\n";
+    // std::cout << "end_vertices = " << cur_vertices << "\n";
 }
 
 void generateNonHamilton(graph *L, int nodes)
@@ -155,7 +155,7 @@ void generateNonHamilton(graph *L, int nodes)
     }
 
     std::cout << "The non-hamiltonian graph has been generated.\n";
-    std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
-    std::cout << "max_vertices = " << max_vertices << "\n";
-    std::cout << "end_vertices = " << cur_vertices << "\n";
+    //std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
+    //std::cout << "max_vertices = " << max_vertices << "\n";
+    //std::cout << "end_vertices = " << cur_vertices << "\n";
 }

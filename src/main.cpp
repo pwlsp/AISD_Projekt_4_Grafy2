@@ -34,7 +34,7 @@ int main(int argc, char *argv[]) {
 
     std::string type;
     ifCorrectArgs(argc, argv, type);
-    std::cout << "type:" << type << "\n";
+    //std::cout << "type:" << type << "\n";
     std::string line;
     int to;
     //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -50,8 +50,8 @@ int main(int argc, char *argv[]) {
             std::cout << "Error: Saturation must be 30 or 70.\nExiting the program...\n";
             exit(0);
         }
-        if (nodes < 11) {
-            std::cout << "Error: Number of nodes must be greater than 10.\nExiting the program...\n";
+        if (nodes < 3) {
+            std::cout << "Error: Number of nodes must be greater than 3.\nExiting the program...\n";
             exit(0);
         }
         std::cout << "nodes>" << nodes << "\n" << "saturation>" << saturation << "\n";

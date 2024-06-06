@@ -22,7 +22,7 @@ bool ifEuler(graph *L, int nodes) {
 void eulerGo(graph *L_copy, int V, int *visited, std::stack <int> &resultStack) {
     int U;
     visited[V] = 1;
-    std::cout << "visited: " << V <<"\n";
+    std::cout << V << "\n";
     while (!L_copy[V].next.empty()){
             U = L_copy[V].next.front();
             L_copy[V].next.pop_front();
@@ -102,7 +102,7 @@ void user_provided_list(graph *L, int vertices)
 
 void findEuler(graph *L, int nodes) {
     std::cout << nodes << "\n";
-    user_provided_list(L,nodes);
+    //user_provided_list(L,nodes);
 
     if (ifEuler(L, nodes)) {
         eulerAlgorithm(L, nodes);
