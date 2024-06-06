@@ -9,6 +9,7 @@ void printGraph(graph *L, int nodes) {
         std::cout << i << ": ";
         for (std::list<int>::iterator it = L[i].next.begin(); it != L[i].next.end(); it++) {
             std::cout << *it << " ";
+            if (*it == i || *it >= nodes) {std::cout << "\ndupa\n"; exit(0);}
         }
         std::cout << "\n";
     }

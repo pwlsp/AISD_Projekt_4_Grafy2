@@ -5,6 +5,8 @@
 
 #include "../include/structList.h"
 
+bool vis[512][512];
+
 bool ifEuler(graph *L, int nodes) {
     int count;
     for (int i = 0; i < nodes; i++) {
@@ -22,18 +24,27 @@ bool ifEuler(graph *L, int nodes) {
 void eulerGo(graph *L_copy, int V, int *visited, std::stack <int> &resultStack) {
     int U;
     visited[V] = 1;
-    while (!L_copy[V].next.empty()){
-            U = L_copy[V].next.front();
-            L_copy[V].next.pop_front();
-            std::list<int>::iterator i;
-            for (i = L_copy[U].next.begin(); i != L_copy[U].next.end(); i++) {
-                if (*i == V) {
-                    break;
-                }
-            }
-            L_copy[U].next.erase(i);
-            eulerGo(L_copy, U, visited, resultStack);
+    std::cout << "spr:" << V << "\n";
+    std::list<int>::iterator i;
+    for(i = L_copy[V].next.begin(); i != L_copy[V].next.end(); i++){
+        if(!vis[V][*i]){
+            vis[V][*i] = 1;
+            eulerGo(L_copy, *i, visited, resultStack);
+        }
     }
+    // while (!L_copy[V].next.empty()){
+    //         U = L_copy[V].next.front();
+    //         if(!vis[V][U]) vis[V][U]
+            // L_copy[V].next.pop_front();
+            // std::list<int>::iterator i;
+            // for (i = L_copy[U].next.begin(); i != L_copy[U].next.end(); i++) {
+            //     if (*i == V) {
+            //         break;
+            //     }
+            // }
+            // L_copy[U].next.erase(i);
+            // eulerGo(L_copy, U, visited, resultStack);
+    //}
     resultStack.push(V);
 }
 
@@ -46,6 +57,7 @@ void displayResult(std::stack <int> &resultStack) {
 }
 
 void eulerAlgorithm(graph *L, int nodes) {
+    for(int i = 0; i < 512; i++) for(int j = 0; j < 512; j++) vis[i][j] = 0;
     int *visited; visited = new int[nodes];
     for (int i = 0; i < nodes; i++) {
         visited[i] = 0;

@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     std::stringstream inputStream(line);
     if (type == "--hamilton") {
         inputStream >> nodes >> saturation;
-        if (saturation != 30 && saturation != 70) {
+        if (saturation != 30 && saturation != 80) {
             std::cout << "Error: Saturation must be 30 or 70.\nExiting the program...\n";
             exit(0);
         }

@@ -115,6 +115,7 @@ void generateHamilton(graph *L, int nodes, int saturation)
 
     int cur_vertices = nodes;
     int max_vertices = (((nodes * nodes) - nodes) / 2) * saturation / 100;
+    //std::cout << "TEST" << max_vertices << "\n";
 
     doGenerateHamilton(L, nodes, cur_vertices, max_vertices);
 
