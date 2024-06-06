@@ -128,7 +128,7 @@ void generateHamilton(graph *L, int nodes, int saturation)
 void generateNonHamilton(graph *L, int nodes)
 {
     int saturation = 100;
-    std::cout << "\nautomatic> Non-hamiltionian graph generation\n";
+    std::cout << "\nautomatic> Non-hamiltonian graph generation\n";
 
     int cur_vertices = nodes;
     int max_vertices = (((nodes * nodes) - nodes) / 2) * 100 / 100;

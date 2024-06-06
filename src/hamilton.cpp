@@ -40,6 +40,8 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
 
 void findHamilton(graph *L, int nodes)
 {
+    std::chrono::time_point<std::chrono::high_resolution_clock> startTime, stopTime;
+    startTime = std::chrono::high_resolution_clock::now();
     int start = 0, count_visited = 0;
     std::vector<int> visited(nodes, 0), path;
 
@@ -55,4 +57,7 @@ void findHamilton(graph *L, int nodes)
     else{
         std::cout << "\nHamiltonian cycle not found.\n";
     }
+    stopTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stopTime - startTime);
+    std::cout << "Time" << duration.count() << "\n";
 }

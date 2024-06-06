@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
     std::stringstream inputStream(line);
     if (type == "--hamilton") {
         inputStream >> nodes >> saturation;
-        if (saturation != 30 && saturation != 80) {
+        if (saturation != 30 && saturation != 70) {
             std::cout << "Error: Saturation must be 30 or 70.\nExiting the program...\n";
             exit(0);
         }
@@ -54,13 +54,13 @@ int main(int argc, char *argv[]) {
             std::cout << "Error: Number of nodes must be greater than 3.\nExiting the program...\n";
             exit(0);
         }
-        std::cout << "nodes>" << nodes << "\n" << "saturation>" << saturation << "\n";
+        std::cout << "nodes> " << nodes << "\n" << "saturation> " << saturation << "\n";
         L = new graph[nodes];
         generateHamilton(L, nodes, saturation);
     }
     else {
         inputStream >> nodes;
-        std::cout << "nodes>" << nodes << "\n";
+        std::cout << "nodes> " << nodes << "\n";
         L = new graph[nodes];
         generateNonHamilton(L, nodes);
     }

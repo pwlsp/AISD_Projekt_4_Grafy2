@@ -1,6 +1,7 @@
 #include <iostream>
 #include <sstream>
 #include <limits>
+#include <chrono>
 
 #include "../include/printGraph.h"
 #include "../include/euler.h"

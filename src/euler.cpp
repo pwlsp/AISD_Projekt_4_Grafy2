@@ -2,10 +2,11 @@
 #include <sstream>
 #include <limits>
 #include <stack>
+#include <chrono>
 
 #include "../include/structList.h"
 
-bool vis[512][512];
+
 
 bool ifEuler(graph *L, int nodes) {
     int count;
@@ -21,18 +22,14 @@ bool ifEuler(graph *L, int nodes) {
     return true;
 }
 
-void eulerGo(graph *L_copy, int V, int *visited, std::stack <int> &resultStack) {
+void eulerGo(graph *L_copy, int V, int *visited, std::stack <int> &resultStack, bool **vis) {
     int U;
     visited[V] = 1;
-    std::cout << "spr:" << V << "\n";
     std::list<int>::iterator i;
-    for(i = L_copy[V].next.begin(); i != L_copy[V].next.end(); i++){
-        if(!vis[V][*i]){
+    for (i = L_copy[V].next.begin(); i != L_copy[V].next.end(); i++) {
+        if (!vis[V][*i]) {
             vis[V][*i] = 1;
-            std::cout << "go to:" << *i << "\n";
-            for(std::list<int>::iterator j = L_copy[*i].next.begin(); j != L_copy[*i].next.end(); j++) std::cout << *j << " ";
-            std::cout << "\n";
-            eulerGo(L_copy, *i, visited, resultStack);
+            eulerGo(L_copy, *i, visited, resultStack, vis);
         }
     }
     // while (!L_copy[V].next.empty()){
@@ -60,7 +57,16 @@ void displayResult(std::stack <int> &resultStack) {
 }
 
 void eulerAlgorithm(graph *L, int nodes) {
-    for(int i = 0; i < 512; i++) for(int j = 0; j < 512; j++) vis[i][j] = 0;
+    bool **vis;
+    vis = new bool*[nodes];
+    for (int i = 0; i < nodes; i++) {
+        vis[i] = new bool[nodes];
+    }
+    for (int i = 0; i < nodes; i++) {
+        for (int j = 0; j < nodes; j++) {
+            vis[i][j] = 0;
+        }
+    }
     int *visited; visited = new int[nodes];
     for (int i = 0; i < nodes; i++) {
         visited[i] = 0;
@@ -75,48 +81,16 @@ void eulerAlgorithm(graph *L, int nodes) {
     std::stack <int> resultStack;
     for (int i = 0; i < nodes; i++) {
         if(visited[i] != 1) {
-            eulerGo(L_copy, i, visited, resultStack);
+            eulerGo(L_copy, i, visited, resultStack, vis);
         }
     }
 
     displayResult(resultStack);
 }
 
-void user_provided_list(graph *L, int vertices)
-{
-    std::string line;
-    int to;
-    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    for (int i = 0; i < vertices; i++)
-    {
-        getline(std::cin, line);
-        //std::cout << "i: " << i << "\n";
-        std::stringstream is(line);
-        if (line != "")
-        {
-            for (int j = 0; j < line.size(); j++)
-            {
-                if (!((line[j] >= '0' && line[j] <= '9') || line[j] == ' '))
-                {
-                    
-                    std::cout << "Wrong type of data.\nExiting the program...\n";
-                    exit(0);
-                }
-            }
-            while (is >> to){
-                if(to >= vertices){
-                    std::cout << "Given vertex \"" << to << "\" is out of range.\nExiting the program...\n";
-                    exit(0);
-                }
-                L[i].next.push_back(to);
-            }
-        }
-    }
-}
-
 void findEuler(graph *L, int nodes) {
-    std::cout << nodes << "\n";
-    //user_provided_list(L,nodes);
+    std::chrono::time_point<std::chrono::high_resolution_clock> startTime, stopTime;
+    startTime = std::chrono::high_resolution_clock::now();
 
     if (ifEuler(L, nodes)) {
         eulerAlgorithm(L, nodes);
@@ -124,4 +98,7 @@ void findEuler(graph *L, int nodes) {
     else {
         std::cout << "The graph is not an eulerian graph. The euler cycle doesn't exist.\n";
     }
+    stopTime = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stopTime - startTime);
+    std::cout << "Time" << duration.count() << "\n";
 }
