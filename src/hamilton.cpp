@@ -15,6 +15,14 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
     visited[vertex] = 1;
     count_visited++;
     std::list successors_copy(L[vertex].next);
+    std::list successors_copy2(L[vertex].next);
+    std::cout << "\nvertex: " << vertex << "\nsuccessors: ";
+    while(successors_copy2.size() > 0){
+        int next = successors_copy2.front();
+        successors_copy2.pop_front();
+        std::cout << next << " ";
+    }
+    std::cout<<"\nvisited: "<< count_visited <<"\n\n";
     while(successors_copy.size() > 0){
         int next = successors_copy.front();
         successors_copy.pop_front();
@@ -33,7 +41,7 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
 }
 void findHamilton(graph *L, int nodes)
 {
-    int start = 0, count_visited = 0;
+    int start = 5, count_visited = 0;
     std::vector<int> visited(nodes, 0), path{start};
 
     bool result = Hamiltonian(L, nodes, visited, path, start, count_visited, start);
