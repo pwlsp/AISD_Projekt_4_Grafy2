@@ -40,7 +40,7 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
 
 void findHamilton(graph *L, int nodes)
 {
-    int start = 5, count_visited = 0;
+    int start = 0, count_visited = 0;
     std::vector<int> visited(nodes, 0), path;
 
     bool result = Hamiltonian(L, nodes, visited, path, start, count_visited, start);
