@@ -7,39 +7,48 @@
 #include "../include/euler.h"
 #include "../include/hamilton.h"
 
-void actions(graph *L, std::string type, int nodes) {
+void actions(graph *L, std::string type, int nodes)
+{
     std::cout << "\nActions\nEnter the action:";
-    std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; //dopisac helpa
+    std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; // dopisac helpa
     std::string action;
-    while (std::cin) {
+    while (std::cin)
+    {
         std::cout << "\n";
         std::cin >> action;
-        if (action != "") {
+        if (action != "")
+        {
             std::cout << "\naction> " << action << "\n";
         }
-        if (action == "Help") {
+        if (action == "Help")
+        {
             std::cout << message;
         }
-        else if (action == "Print") {
+        else if (action == "Print")
+        {
             printGraph(L, nodes);
         }
-        else if (action == "FindEuler") {//&& type == "--hamilton") {
+        else if (action == "FindEuler")
+        {
             findEuler(L, nodes);
         }
-        else if (action == "FindHamilton") {
+        else if (action == "FindHamilton")
+        {
             findHamilton(L, nodes);
         }
-        else if (action == "Exit") {
+        else if (action == "Exit")
+        {
             std::cout << "Exiting the program...\n";
             break;
         }
-        else if (action == "") {
+        else if (action == "")
+        {
             std::cout << "End of file.\nExiting the program...\n";
             break;
         }
         else
             std::cout << "\nWrong command\n";
-        /*w*/
+
         action = "";
         std::cout << "\nEnter the action:";
     }
