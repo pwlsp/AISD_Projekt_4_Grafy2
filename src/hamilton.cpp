@@ -55,9 +55,9 @@ void findHamilton(graph *L, int nodes)
         std::cout << "\nThe hamiltonian cycle found successfully.\n";
     }
     else{
-        std::cout << "\nHamiltonian cycle not found.\n";
+        std::cout << "\nThe hamiltonian cycle not found.\n";
     }
     stopTime = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(stopTime - startTime);
-    std::cout << "Time" << duration.count() << "\n";
+    std::cout << "Time: " << duration.count() << "\n";
 }

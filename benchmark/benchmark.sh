@@ -27,7 +27,7 @@ EOF
     result=$(/usr/bin/time -f "%S%M" $runcpp < <(cat $input_file <(echo $action) <(echo Exit)) 2>&1 >$tmpFile)
     #echo $(cat $tmpFile)
     time=$(cat $tmpFile | tr ' ' '\n' | grep Time*)
-    time=$(echo $time | cut -c 5-${#time})
+    time=$(echo $time | cut -c 7-${#time})
     type_result=$(echo $type | cut -c 3-${#type})
     result_file_name=$(echo "$action")Time.csv
     echo "$type_result,$instance_size,$time" >> $result_file_name
