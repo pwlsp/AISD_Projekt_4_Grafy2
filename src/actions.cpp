@@ -7,8 +7,7 @@
 #include "../include/euler.h"
 #include "../include/hamilton.h"
 
-void actions(graph *L, std::string type, int nodes) { //jakas reprezentacje trzeba wybrac
-    // std::cout << "nodes: " << nodes << " " << "type: " << type << "\n";
+void actions(graph *L, std::string type, int nodes) {
     std::cout << "\nActions\nEnter the action:";
     std::string message = "Help\t\tShow this message.\nPrint\t\tPrint the graph (_ representation).\nFindEuler\t\t\nFindHamilton\t\t"; //dopisac helpa
     std::string action;

@@ -23,7 +23,7 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
         successors_copy.pop_front();
         if (next == start && count_visited == nodes)
         {
-            path.push_back(start); // complete the cycle
+            path.push_back(start);
             return true;
         }
         if (!visited[next]){
@@ -34,7 +34,7 @@ bool Hamiltonian(graph *L, int nodes, std::vector<int> &visited, std::vector<int
     }
     visited[vertex] = 0;
     count_visited--;
-    path.pop_back();  // Remove the vertex if backtracking
+    path.pop_back();
     return false;
 }
 

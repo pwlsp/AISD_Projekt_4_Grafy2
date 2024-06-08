@@ -34,10 +34,8 @@ int main(int argc, char *argv[]) {
 
     std::string type;
     ifCorrectArgs(argc, argv, type);
-    //std::cout << "type:" << type << "\n";
     std::string line;
     int to;
-    //std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     graph *L;
     int nodes, saturation;

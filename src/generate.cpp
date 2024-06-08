@@ -19,7 +19,8 @@ int randomNumber(int x, int y)
     return distribution(gen);
 }
 
-void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertices){
+void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertices)
+{
     std::vector<int> cycle(nodes);
     for (int i = 0; i < nodes; ++i)
     {
@@ -37,11 +38,7 @@ void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertice
     L[cycle[nodes - 1]].next.push_back(cycle[0]);
     L[cycle[0]].next.push_back(cycle[nodes - 1]);
 
-    //std::cout << "\nbase cycle: ";
-    // for(int i = 0; i < nodes; i++){
-    //     std::cout << cycle[i] << " ";
-    // }
-    std::cout << "\n";    
+    std::cout << "\n";
 
     while (cur_vertices <= max_vertices - 3)
     {
@@ -90,23 +87,22 @@ void doGenerateHamilton(graph *L, int nodes, int &cur_vertices, int &max_vertice
             }
             if (success)
             {
-                L[a].next.push_back(b);
-                L[b].next.push_back(a);
-                L[b].next.push_back(c);
-                L[c].next.push_back(b);
-                L[c].next.push_back(a);
-                L[a].next.push_back(c);
-                cur_vertices += 3;
-                // std::cout << "\nadded small cycle:" << a << " " << b << " " << c << "\n";
-                // printGraph(L, nodes);
+                if (a != b and a != c and b != c)
+                {
+                    L[a].next.push_back(b);
+                    L[b].next.push_back(a);
+                    L[b].next.push_back(c);
+                    L[c].next.push_back(b);
+                    L[c].next.push_back(a);
+                    L[a].next.push_back(c);
+                    cur_vertices += 3;
+                }
                 break;
             }
         }
         if (!success)
             break;
     }
-
-    
 }
 
 void generateHamilton(graph *L, int nodes, int saturation)
@@ -115,14 +111,10 @@ void generateHamilton(graph *L, int nodes, int saturation)
 
     int cur_vertices = nodes;
     int max_vertices = (((nodes * nodes) - nodes) / 2) * saturation / 100;
-    //std::cout << "TEST" << max_vertices << "\n";
 
     doGenerateHamilton(L, nodes, cur_vertices, max_vertices);
 
     std::cout << "The hamiltonian graph has been generated.\n";
-    // std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
-    // std::cout << "max_vertices = " << max_vertices << "\n";
-    // std::cout << "end_vertices = " << cur_vertices << "\n";
 }
 
 void generateNonHamilton(graph *L, int nodes)
@@ -135,9 +127,10 @@ void generateNonHamilton(graph *L, int nodes)
 
     doGenerateHamilton(L, nodes, cur_vertices, max_vertices);
 
-    int removed = randomNumber(0, nodes-1);
+    int removed = randomNumber(0, nodes - 1);
 
-    while (L[removed].next.size() > 0){
+    while (L[removed].next.size() > 0)
+    {
         L[L[removed].next.front()].next.remove(removed);
         L[removed].next.pop_front();
         cur_vertices--;
@@ -146,9 +139,11 @@ void generateNonHamilton(graph *L, int nodes)
     saturation = 50;
     max_vertices = (((nodes * nodes) - nodes) / 2) * saturation / 100;
 
-    while (cur_vertices > max_vertices){
-        removed = randomNumber(0, nodes-1);
-        if (L[removed].next.size() > 0){
+    while (cur_vertices > max_vertices)
+    {
+        removed = randomNumber(0, nodes - 1);
+        if (L[removed].next.size() > 0)
+        {
             L[L[removed].next.front()].next.remove(removed);
             L[removed].next.pop_front();
             cur_vertices--;
@@ -156,7 +151,4 @@ void generateNonHamilton(graph *L, int nodes)
     }
 
     std::cout << "The non-hamiltonian graph has been generated.\n";
-    //std::cout << "100\% = " << (((nodes * nodes) - nodes) / 2) << "\n";
-    //std::cout << "max_vertices = " << max_vertices << "\n";
-    //std::cout << "end_vertices = " << cur_vertices << "\n";
 }
